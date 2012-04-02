@@ -1,17 +1,16 @@
 #!/usr/bin/env perl
 
-use v5.10;
 use strict;
 use warnings FATAL => "all";
 use utf8;
 use version;
 use Archive::Tar;
+use Data::Dump "dump";
 use ExtUtils::CChecker;
 use File::Spec::Functions qw(catdir catfile);
 use File::Which "which";
 use IPC::Cmd "run";
 use Module::Build;
-use Data::Dump "dump";
 use Net::FTP;
 
 my $builder = Module::Build->new(
@@ -23,20 +22,20 @@ my $builder = Module::Build->new(
 	share_dir => "share" );
 
 my %autotools = map {
-	my ($tool, $ftp_path) = @{$_}{qw(tool ftp_path)};
-	my $path = which($tool);
-	my ($version) = $path
+	my ($tool, $bin_path, $ftp_path) = @{$_}{qw(tool bin_path ftp_path)};
+	my ($version) = $bin_path
 		? do {
-			my $installed = (run(
-				command => [$path, "--version"]))[2] =~ /\) ([0-9.]+)$/m;
-			# Convert to semantic version
-			$installed =~ s/^(\d\.\d+)$/$1.0/ }
+			my ($output) = ( run(
+				command => [$bin_path, "--version"] ) )[2][0] =~ /([\d.]+)/ }
 		: 0;
-	if ( version->new($version) >= $_->{min_version} ) {
+	# Convert to semantic version
+	$version =~ s/^(?<!.)(\d\.\d+)$/$1.0/m;
+	if ( !$ENV{COMPILE_ALIEN_AUTOTOOLS}
+		 && version->new($version) >= $_->{min_version} ) {
 		# Skipping installation and passing path found by &which:
-		$tool => $path }
+		$tool => $bin_path }
 	else {
-		say "Downloading source archive from ftp.gnu.org...";
+		print "Downloading $tool source archive from ftp.gnu.org...\n";
 		my $ftp = Net::FTP->new("ftp.gnu.org")
 			or die "Unable to connect to FTP server";
 		$ftp->login or die "Unable to anonymously login to FTP server";
@@ -50,21 +49,20 @@ my %autotools = map {
 
 		my $base_dir = $builder->base_dir;
 		my $share_dir = catdir($base_dir, "share");
-		my $tool_dir = glob "*$tool*";
+		my $tool_dir = glob "$tool*";
 		chdir $tool_dir;
 
 		run( command => ["./configure", "--prefix=$share_dir"] )
 			or die "Failed to configure $tool";
-		say "Compiling...";
+		print "Compiling $tool...\n";
 		run( command => [qw(make -j9)]) or die "Failed to make $tool";
-		say "Installing $tool...";
+		print "Installing...\n";
 		run( command => [qw(make install)] )
 			or die "Failed to install $tool";
 		chdir $base_dir;
 
 		# Passing sharedir path of new installation:
 		$tool, catfile($share_dir, "bin", $tool) } }
-
 	{ tool => "autoconf",
 	  min_version => version->new("2.68.0"),
 	  bin_path => which("autoconf"),
@@ -72,10 +70,22 @@ my %autotools = map {
 	{ tool => "automake",
 	  min_version => version->new("1.11.0"),
 	  bin_path => which("automake"),
-	  ftp_path => "ftp.gnu.org/gnu/automake/automake-1.11.3.tar.gz" },
+	  ftp_path => "/gnu/automake/automake-1.11.3.tar.gz" },
 	{ tool => "libtool",
 	  min_version => version->new("2.4.0"),
 	  bin_path => which("libtool"),
-	  ftp_path => "ftp.gnu.org/gnu/libtool/libtool-2.4.2.tar.gz" };
+	  ftp_path => "/gnu/libtool/libtool-2.4.2.tar.gz" };
 
-say dump \%autotools;
+do {
+	open my $LIB, "<", "lib/Alien/Autotools.pm";
+	local $/;
+	my $lib = <$LIB>;
+	close $LIB;
+	$lib =~ s/##/$autotools{autoconf}/;
+	$lib =~ s/##/$autotools{automake}/;
+	$lib =~ s/##/$autotools{libtool}/;
+	open $LIB, ">", "lib/Alien/Autotools.pm";
+	print $LIB $lib;
+	close $LIB };
+
+$builder->create_build_script;
