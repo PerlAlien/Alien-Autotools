@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Alien::Autotools - Build and install the GNU build system
+Alien::Autotools - Build and install the GNU build system.
 
 =head1 SYNOPSIS
 
