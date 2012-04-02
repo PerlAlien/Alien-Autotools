@@ -35,7 +35,7 @@ L<ftp://ftp.gnu.org/>.
 
 =back
 
-Each function is exportable on request, takes no arguments and returns the
+Each function is exportable on request, takes no arguments, and returns the
 absolute path to its respective executable binary.
 
 =head1 AUTHOR
