@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-use Test::More tests => 2;
+use Test::More tests => 3;
 use strict;
 use warnings FATAL => "all";
 use Alien::Autotools qw(autoconf_path automake_path libtool_path);
