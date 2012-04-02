@@ -76,8 +76,9 @@ my %autotools = map {
 	  bin_path => which("libtool"),
 	  ftp_path => "/gnu/libtool/libtool-2.4.2.tar.gz" };
 
+# Update Perl module:
 do {
-	open my $LIB, "<", "lib/Alien/Autotools.pm";
+	open my $LIB, "<", catdir qw(lib Alien Autotools.pm);
 	local $/;
 	my $lib = <$LIB>;
 	close $LIB;
@@ -85,7 +86,13 @@ do {
 	$lib =~ s/##/$autotools{automake}/;
 	$lib =~ s/##/$autotools{libtool}/;
 	open $LIB, ">", "lib/Alien/Autotools.pm";
-	print $LIB $lib;
-	close $LIB };
+	print $LIB $lib };
+
+# Update manifest:
+my @share_files = map { glob catdir qw(share $_ *) } qw(bin share);
+@share_files > 0 and do {
+	open my $MANIFEST, ">>", "MANIFEST";
+	print $MANIFEST map {
+		catfile($builder->dist_dir, $_) . "\n" } @share_files };
 
 $builder->create_build_script;
