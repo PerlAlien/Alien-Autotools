@@ -8,12 +8,12 @@ use Exporter "import";
 # VERSION
 # ABSTRACT: Build and install the GNU build system.
 
-our @EXPORT_OK = qw(autoconf_path automake_path libtool_path);
+our @EXPORT_OK = qw(autoconf_dir automake_dir libtool_dir);
 
-sub autoconf_path () { "##" }
+sub autoconf_dir () { "##" }
 
-sub automake_path () { "##" }
+sub automake_dir () { "##" }
 
-sub libtool_path () { "##" }
+sub libtool_dir () { "##" }
 
 1;

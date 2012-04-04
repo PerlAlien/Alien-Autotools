@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+	- Changed *_path() functions to *_dir().
 
 v0.0.3    2012-04-03 22:06:19 America/Chicago
 	- Forced glob call into list context

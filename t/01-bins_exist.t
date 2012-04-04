@@ -3,8 +3,9 @@
 use Test::More tests => 3;
 use strict;
 use warnings FATAL => "all";
-use Alien::Autotools qw(autoconf_path automake_path libtool_path);
+use Alien::Autotools qw(autoconf_dir automake_dir libtool_dir);
+use File::Spec::Functions qw(catfile);
 
-ok -x autoconf_path(), "autoconf found and is executable";
-ok -x automake_path(), "autoconf found and is executable";
-ok -x libtool_path(), "autoconf found and is executable";
+ok -x catfile( autoconf_dir(), "autoconf" ), "autoconf found and is executable";
+ok -x catfile( automake_dir(), "automake" ), "automake found and is executable";
+ok -x catfile( libtool_dir(), "libtool" ), "libtool found and is executable";
