@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+v0.0.3    2012-04-03 22:06:19 America/Chicago
 	- Forced glob call into list context
 	- Added "share/bin" directory to $ENV{PATH} during build process so
 	  automake can use the newly made autoconf.
