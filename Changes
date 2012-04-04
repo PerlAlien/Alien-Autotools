@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+v0.0.4    2012-04-04 00:58:51 America/Chicago
 	- Changed *_path() functions to *_dir().
 
 v0.0.3    2012-04-03 22:06:19 America/Chicago
