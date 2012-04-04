@@ -1,6 +1,12 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+	- Forced glob call into list context
+	- Added "share/bin" directory to $ENV{PATH} during build process so
+	  automake can use the newly made autoconf.
+
+v0.0.2    2012-04-02 12:36:50 America/Chicago
 	- Fixed configure dependencies
+
 v0.0.1    2012-04-02 00:40:01 America/Chicago
 	- First trial version, released on an unsuspecting world.
