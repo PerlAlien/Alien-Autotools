@@ -36,8 +36,9 @@ my %autotools = map {
 		? do {
 			my ($output) = ( run(
 				command => [$bin_path, "--version"] ) )[2][0] =~ /([\d.]+)/ }
-		: 0;
+		: "0.0.0";
 	# Convert to semantic version
+	$version ||= "0.0.0";
 	$version =~ s/^(?<!.)(\d\.\d+)$/$1.0/m;
 	if ( !$ENV{COMPILE_ALIEN_AUTOTOOLS}
 		 && version->new($version) >= $_->{min_version} ) {

@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+	- Handled single smoke test failure on a BSD box where a version regexp
+	  match failed.
+	- Promoted to full release.
 
 v0.0.4    2012-04-04 00:58:51 America/Chicago
 	- Changed *_path() functions to *_dir().
