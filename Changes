@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+	- Increased perl version requirement to v5.10.1.
 
 v0.0.5    2012-04-04 11:48:10 America/Chicago
 	- Handled single smoke test failure on a BSD box where a version regexp
