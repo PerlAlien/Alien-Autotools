@@ -1,4 +1,3 @@
-Alien-Autotools-*
-.build
-*~
-*#*
+/Alien-Autotools-*
+/.build
+*.swp
