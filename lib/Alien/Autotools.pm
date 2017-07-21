@@ -20,9 +20,12 @@ our @EXPORT_OK = qw(autoconf_dir automake_dir libtool_dir);
 From Perl:
 
  use Alien::Autotools;
- use Env qw( @PATH );
+ use Env qw( @PATH @ACLOCAL_PATH );
  
  unshift @PATH, Alien::Autotools->bin_dir;
+ unshift @ACLOCAL_PATH, Alien::Autotools->aclocal_dir;
+ 
+ system 'autoconf', ...;
 
 From L<alienfile>:
 
@@ -61,6 +64,45 @@ sub _dir_from_exe
   my $path = File::Which::which($name);
   die "unable to find $name in PATH" unless $path;
   Path::Tiny->new($path)->parent->stringify;
+}
+
+=head2 aclocal_dir
+
+ my @dirs = Alien::Autotools->aclocal_dir;
+
+Returns the list of directories that need to be added to C<ACLOCAL_PATH> in order for the
+autotools to work correctly.
+
+=cut
+
+sub aclocal_dir
+{
+  my @dir;
+  foreach my $alien (map { "Alien::$_" } qw( autoconf automake libtool m4 ))
+  {
+    my $dir = Path::Tiny->new($alien->dist_dir)->child(qw( share aclocal ));
+    push @dir, $dir if -d $dir;
+  }
+  @dir;
+}
+
+=head2 versions
+
+ my %versions = Alien::Autotools->versions;
+
+Returns the versions of the various autotools that are available.
+
+=cut
+
+sub versions
+{
+  my %ver;
+  foreach my $alien (qw( autoconf automake libtool m4 ))
+  {
+    my $class = "Alien::$alien";
+    $ver{$alien} = $class->version;
+  }
+  %ver;
 }
 
 =head2 autoconf_dir

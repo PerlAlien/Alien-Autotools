@@ -7,9 +7,12 @@ Build and install the GNU build system.
 From Perl:
 
     use Alien::Autotools;
-    use Env qw( @PATH );
+    use Env qw( @PATH @ACLOCAL_PATH );
     
     unshift @PATH, Alien::Autotools->bin_dir;
+    unshift @ACLOCAL_PATH, Alien::Autotools->aclocal_dir;
+    
+    system 'autoconf', ...;
 
 From [alienfile](https://metacpan.org/pod/alienfile):
 
@@ -34,6 +37,19 @@ and [Alien::m4](https://metacpan.org/pod/Alien::m4).
 
 Returns the list of directories that need to be added to `PATH` in order for the autotools
 to work correctly.
+
+## aclocal\_dir
+
+    my @dirs = Alien::Autotools->aclocal_dir;
+
+Returns the list of directories that need to be added to `ACLOCAL_PATH` in order for the
+autotools to work correctly.
+
+## versions
+
+    my %versions = Alien::Autotools->versions;
+
+Returns the versions of the various autotools that are available.
 
 ## autoconf\_dir
 

@@ -23,7 +23,13 @@ $modules{$_} = $_ for qw(
   Test::Alien
 );
 
-
+$post_diag = sub {
+  require Alien::Autotools;
+  my %ver = Alien::Autotools->versions;
+  diag sprintf "%8s version = %s", $_, $ver{$_} for qw( autoconf automake libtool m4 );
+  diag "       bin_dir[] = ", $_ for Alien::Autotools->bin_dir;
+  diag "   aclocal_dir[] = ", $_ for Alien::Autotools->aclocal_dir;
+};
 
 my @modules = sort keys %modules;
 

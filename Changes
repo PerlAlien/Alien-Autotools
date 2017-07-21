@@ -1,6 +1,10 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Migrate to alienfile + Alien::Build style interface
+  - Add bin_dir method
+  - Add aclocal_dir method
+  - Add versions method
 
 v0.0.6    2012-04-06 04:21:42 America/Chicago
   - Increased perl version requirement to v5.10.1.
