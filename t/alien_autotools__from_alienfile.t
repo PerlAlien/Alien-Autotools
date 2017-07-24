@@ -3,7 +3,6 @@ use Test::Alien;
 use Test::Alien::Build;
 use Path::Tiny ();
 use Capture::Tiny qw( capture_merged );
-use YAML ();
 
 our $path = Path::Tiny->new('corpus/foo')->absolute->stringify;
 
@@ -59,7 +58,7 @@ note scalar capture_merged {
 
 is $@, '';
 
-note YAML::Dump({ runtime => $build->runtime_prop, install => $build->install_prop });
+#note YAML::Dump({ runtime => $build->runtime_prop, install => $build->install_prop });
 
 my $prefix = $build->install_prop->{stage};
 my $bin = "$prefix/bin/foo";

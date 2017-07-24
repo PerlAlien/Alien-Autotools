@@ -15,12 +15,14 @@ $modules{$_} = $_ for qw(
   Alien::automake
   Alien::libtool
   Alien::m4
+  Capture::Tiny
   ExtUtils::MakeMaker
   File::Spec::Functions
   File::Which
   Path::Tiny
   Test2::V0
   Test::Alien
+  Test::Alien::Build
 );
 
 $post_diag = sub {
