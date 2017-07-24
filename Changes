@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.99_02   2017-07-24 07:24:20 -0400
+  - Add a test that test against a real autotools project
+
 0.99_01   2017-07-21 12:10:27 -0400
   - Migrate to alienfile + Alien::Build style interface
   - Add bin_dir method
