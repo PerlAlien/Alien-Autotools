@@ -1,4 +1,4 @@
-use Test2::V0;
+use Test2::V0 -no_srand => 1;
 use Alien::Autotools qw(autoconf_dir automake_dir libtool_dir);
 use File::Spec::Functions qw(catfile);
 

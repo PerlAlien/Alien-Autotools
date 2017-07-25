@@ -55,7 +55,10 @@ to work correctly.
 
 sub bin_dir
 {
-  map { $_->bin_dir } map { "Alien::$_" } qw( autoconf automake libtool m4 );
+  my @dir = map { $_->bin_dir }
+            map { "Alien::$_" }
+            qw( autoconf automake libtool m4 );
+  @dir;
 }
 
 sub _dir_from_exe
