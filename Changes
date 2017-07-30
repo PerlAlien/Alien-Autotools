@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Bump requirements of Alien::autoconf, Alien::automake and Alien::libtool
 
 1.01      2017-07-25 07:53:20 -0400
   - Tweaks to get Windows to work
