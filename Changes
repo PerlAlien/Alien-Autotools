@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.02      2017-07-29 20:23:13 -0400
   - Bump requirements of Alien::autoconf, Alien::automake and Alien::libtool
 
 1.01      2017-07-25 07:53:20 -0400
