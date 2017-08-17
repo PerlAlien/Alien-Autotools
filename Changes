@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.03      2017-08-17 15:16:14 -0400
   - Fixes for MSYS2 / MinGW
 
 1.02      2017-07-29 20:23:13 -0400
