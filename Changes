@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Fixes for MSYS2 / MinGW
 
 1.02      2017-07-29 20:23:13 -0400
   - Bump requirements of Alien::autoconf, Alien::automake and Alien::libtool

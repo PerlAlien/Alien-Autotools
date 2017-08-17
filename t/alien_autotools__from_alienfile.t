@@ -2,7 +2,7 @@ use Test2::V0 -no_srand => 1;
 use Test::Alien;
 use Test::Alien::Build;
 use Path::Tiny ();
-use Capture::Tiny qw( capture_merged );
+use Capture::Tiny qw( capture capture_merged );
 
 our $path = Path::Tiny->new('corpus/foo')->absolute->stringify;
 
@@ -68,9 +68,17 @@ note "$bin";
 
 if($^O eq 'MSWin32')
 {
-  #require Alien::MSYS; # already loaded by alienfile (?)
-  my $sh = Path::Tiny->new(Alien::MSYS::msys_path())->child('sh');
-  $bin = [ $sh, -c => $bin ];
+  my($uname) = capture { system 'uname' };
+  if(defined $uname && $uname =~ /MINGW(32|64)/)
+  {
+    $bin = [ 'sh', -c => $bin ];
+  }
+  else
+  {
+    eval q{ require Alien::MSYS };
+    my $sh = Path::Tiny->new(Alien::MSYS::msys_path())->child('sh');
+    $bin = [ $sh, -c => $bin ];
+  }
 }
 
 run_ok($bin)
