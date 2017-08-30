@@ -1,6 +1,7 @@
 use Test2::V0 -no_srand => 1;
 use Test::Alien;
 use Alien::Autotools;
+use Alien::m4;
 use Capture::Tiny qw( capture );
 
 if($^O eq 'MSWin32')
@@ -34,6 +35,10 @@ alien_ok 'Alien::Autotools';
 
 run_ok(wrapper($_, "--version"), "run $_")
   ->success
-  ->note for qw( autoconf automake libtool m4 );
+  ->note for qw( autoconf automake libtool );
+
+run_ok(wrapper(Alien::m4->exe, "--version"), "run @{[ Alien::m4->exe ]}")
+  ->success
+  ->note;
 
 done_testing;
