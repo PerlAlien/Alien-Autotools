@@ -2,6 +2,10 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+1.04      2017-08-30 11:15:04 -0400
+  - Fixes for NetBSD and other systems where GNU m4 might be called gm4
+  - Require Alien::m4 0.17 for better system probing of m4
+
 1.03      2017-08-17 15:16:14 -0400
   - Fixes for MSYS2 / MinGW
 
