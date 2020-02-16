@@ -13,11 +13,11 @@ my $build = alienfile_ok q{
   use alienfile;
 
   probe sub { 'share' };
-  
+
   share {
-  
+
     requires 'Alien::Autotools';
-    
+
     log "path = $main::path";
 
     fetch sub {
@@ -27,19 +27,19 @@ my $build = alienfile_ok q{
         filename => 'foo',
         path     => $main::path,
       };
-    };    
-    
+    };
+
     plugin 'Extract::Directory';
-    
+
     plugin 'Build::Autoconf';
-    
+
     build [
        [ 'sh', -c => 'autoreconf -vfi' ],
        '%{configure}',
        '%{make}',
        [ '%{make}', 'install' ],
      ];
-  
+
   };
 
 };
