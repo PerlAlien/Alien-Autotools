@@ -1,4 +1,4 @@
-# Alien::Autotools [![Build Status](https://secure.travis-ci.org/plicease/Alien-Autotools.png)](http://travis-ci.org/plicease/Alien-Autotools)
+# Alien::Autotools [![Build Status](https://secure.travis-ci.org/Perl5-Alien/Alien-Autotools.png)](http://travis-ci.org/Perl5-Alien/Alien-Autotools) ![windows](https://github.com/Perl5-Alien/Alien-Autotools/workflows/windows/badge.svg) ![macos](https://github.com/Perl5-Alien/Alien-Autotools/workflows/macos/badge.svg)
 
 Build and install the GNU build system.
 
