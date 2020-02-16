@@ -6,21 +6,25 @@ Build and install the GNU build system.
 
 From Perl:
 
-    use Alien::Autotools;
-    use Env qw( @PATH @ACLOCAL_PATH );
-    
-    unshift @PATH, Alien::Autotools->bin_dir;
-    unshift @ACLOCAL_PATH, Alien::Autotools->aclocal_dir;
-    
-    system 'autoconf', ...;
+```perl
+use Alien::Autotools;
+use Env qw( @PATH @ACLOCAL_PATH );
+
+unshift @PATH, Alien::Autotools->bin_dir;
+unshift @ACLOCAL_PATH, Alien::Autotools->aclocal_dir;
+
+system 'autoconf', ...;
+```
 
 From [alienfile](https://metacpan.org/pod/alienfile):
 
-    use alienfile;
-    
-    share {
-      requires 'Alien::Autotools';
-    };
+```perl
+use alienfile;
+
+share {
+  requires 'Alien::Autotools';
+};
+```
 
 # DESCRIPTION
 
@@ -33,45 +37,57 @@ and [Alien::m4](https://metacpan.org/pod/Alien::m4).
 
 ## bin\_dir
 
-    my @dirs = Alien::Autotools->bin_dir;
+```perl
+my @dirs = Alien::Autotools->bin_dir;
+```
 
 Returns the list of directories that need to be added to `PATH` in order for the autotools
 to work correctly.
 
 ## aclocal\_dir
 
-    my @dirs = Alien::Autotools->aclocal_dir;
+```perl
+my @dirs = Alien::Autotools->aclocal_dir;
+```
 
 Returns the list of directories that need to be added to `ACLOCAL_PATH` in order for the
 autotools to work correctly.
 
 ## versions
 
-    my %versions = Alien::Autotools->versions;
+```perl
+my %versions = Alien::Autotools->versions;
+```
 
 Returns the versions of the various autotools that are available.
 
 ## autoconf\_dir
 
-    # legacy interface
-    use Alien:::Autotools qw( autoconf_dir );
-    my $dir = autoconf_dir;
+```perl
+# legacy interface
+use Alien:::Autotools qw( autoconf_dir );
+my $dir = autoconf_dir;
+```
 
 Returns the directory path to autoconf
 
 ## automake\_dir
 
-    # legacy interface
-    use Alien:::Autotools qw( automake_dir );
-    my $dir = automake_dir;
+```perl
+# legacy interface
+use Alien:::Autotools qw( automake_dir );
+my $dir = automake_dir;
+```
 
 Returns the directory path to automake
 
 ## libtool\_dir
 
-    # legacy interface
-    use Alien:::Autotools qw( libtool_dir );
-    my $dir = libtool_dir;
+```perl
+# legacy interface
+use Alien:::Autotools qw( libtool_dir );
+my $dir = libtool_dir;
+```
 
 Returns the directory path to libtool
 
@@ -97,4 +113,6 @@ This software is Copyright (c) 2012 by Richard Simões.
 
 This is free software, licensed under:
 
-    The GNU Lesser General Public License, Version 3, June 2007
+```
+The GNU Lesser General Public License, Version 3, June 2007
+```
