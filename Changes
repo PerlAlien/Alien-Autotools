@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.05      2020-02-15 20:32:35 -0700
   - Bump version requirements for Alien::m4, Alien::autoconf, Alien::automake
     and Alien::libtool to ensure that all four are fetched using https
     instead of http for better security.
