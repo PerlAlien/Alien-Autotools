@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Bump version requirements for Alien::m4, Alien::autoconf, Alien::automake
+    and Alien::libtool to ensure that all four are fetched using https
+    instead of http for better security.
 
 1.04      2017-08-30 11:15:04 -0400
   - Fixes for NetBSD and other systems where GNU m4 might be called gm4
