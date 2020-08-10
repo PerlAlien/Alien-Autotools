@@ -75,7 +75,7 @@ if($^O eq 'MSWin32')
   }
   else
   {
-    eval q{ require Alien::MSYS };
+    eval q{ require Alien::MSYS };  ## no critic (BuiltinFunctions::ProhibitStringyEval)
     my $sh = Path::Tiny->new(Alien::MSYS::msys_path())->child('sh');
     $bin = [ $sh, -c => $bin ];
   }
