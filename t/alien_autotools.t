@@ -17,7 +17,7 @@ if($^O eq 'MSWin32')
   else
   {
     skip_all 'test requires Alien::MSYS on MSWin32'
-      unless eval q{ require Alien::MSYS; 1 };
+      unless eval q{ require Alien::MSYS; 1 };  ## no critic (BuiltinFunctions::ProhibitStringyEval)
     require File::Spec;
     my $sh = File::Spec->catfile(Alien::MSYS::msys_path(), 'sh');
     *wrapper = sub {
