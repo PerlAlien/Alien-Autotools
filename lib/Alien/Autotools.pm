@@ -168,6 +168,18 @@ sub dynamic_libs {}
 
 1;
 
+=head1 CAVEATS
+
+This module is typically needed for other L<Alien>s for a share install that use the
+autotools / GNU build system without bundling a pre-built C<configure> script.  If
+possible it is better to use a version of the alienized package that includes a
+pre-built C<configure> script.
+
+If you are a system vendor, then you should typically not need to package this module,
+check to see if the dependency that requires it can be built as a system install
+instead.
+
+
 =head1 SEE ALSO
 
 =over 4

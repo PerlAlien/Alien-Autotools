@@ -91,6 +91,17 @@ my $dir = libtool_dir;
 
 Returns the directory path to libtool
 
+# CAVEATS
+
+This module is typically needed for other [Alien](https://metacpan.org/pod/Alien)s for a share install that use the
+autotools / GNU build system without bundling a pre-built `configure` script.  If
+possible it is better to use a version of the alienized package that includes a
+pre-built `configure` script.
+
+If you are a system vendor, then you should typically not need to package this module,
+check to see if the dependency that requires it can be built as a system install
+instead.
+
 # SEE ALSO
 
 - [Alien](https://metacpan.org/pod/Alien)
@@ -109,7 +120,7 @@ Current maintainer: Graham Ollis <plicease@cpan.org>
 
 # COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2012 by Richard Simões.
+This software is Copyright (c) 2012-2022 by Richard Simões.
 
 This is free software, licensed under:
 
