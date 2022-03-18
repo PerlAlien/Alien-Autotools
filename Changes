@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Improved documentation (gh#6)
 
 1.05      2020-02-15 20:32:35 -0700
   - Bump version requirements for Alien::m4, Alien::autoconf, Alien::automake
