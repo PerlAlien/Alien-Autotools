@@ -1,4 +1,4 @@
-# Alien::Autotools ![linux](https://github.com/Perl5-Alien/Alien-Autotools/workflows/linux/badge.svg) ![windows](https://github.com/Perl5-Alien/Alien-Autotools/workflows/windows/badge.svg) ![macos](https://github.com/Perl5-Alien/Alien-Autotools/workflows/macos/badge.svg)
+# Alien::Autotools ![static](https://github.com/Perl5-Alien/Alien-Autotools/workflows/static/badge.svg) ![linux](https://github.com/Perl5-Alien/Alien-Autotools/workflows/linux/badge.svg) ![windows](https://github.com/Perl5-Alien/Alien-Autotools/workflows/windows/badge.svg) ![macos](https://github.com/Perl5-Alien/Alien-Autotools/workflows/macos/badge.svg)
 
 Build and install the GNU build system.
 
