@@ -22,7 +22,20 @@ From [alienfile](https://metacpan.org/pod/alienfile):
 use alienfile;
 
 share {
+  # Alien::Autotools will pull in:
+  #  - Alien::autoconf
+  #  - Alien::automake
+  #  - Alien::m4
+  #  - Alien::libtool
+  # all of which you will likely need.
   requires 'Alien::Autotools';
+  plugin 'Build::Autoconf';
+  build [
+    '%{autoreconf} -vfi',
+    '%{configure}',
+    '%{make}',
+    '%{make} install',
+  ];
 };
 ```
 
@@ -32,6 +45,10 @@ This [Alien](https://metacpan.org/pod/Alien) provides the minimum tools requires
 which do not come bundled with a working `configure` script.  It currently delegates
 most of its responsibilities to [Alien::autoconf](https://metacpan.org/pod/Alien::autoconf), [Alien::automake](https://metacpan.org/pod/Alien::automake), [Alien::libtool](https://metacpan.org/pod/Alien::libtool),
 and [Alien::m4](https://metacpan.org/pod/Alien::m4).
+
+The most common use case from an [alienfile](https://metacpan.org/pod/alienfile) is shown above where `autoreconf` is called
+from this [Alien](https://metacpan.org/pod/Alien), which allows the [Alien::Build::Plugin::Build::Autoconf](https://metacpan.org/pod/Alien::Build::Plugin::Build::Autoconf) to then
+configure and build the alienized package.
 
 # METHODS
 
@@ -101,6 +118,20 @@ pre-built `configure` script.
 If you are a system vendor, then you should typically not need to package this module,
 check to see if the dependency that requires it can be built as a system install
 instead.
+
+# HELPERS
+
+This [Alien](https://metacpan.org/pod/Alien) provides all of the helpers provides by [Alien::m4](https://metacpan.org/pod/Alien::m4), [Alien::autoconf](https://metacpan.org/pod/Alien::autoconf),
+[Alien::automake](https://metacpan.org/pod/Alien::automake) and [Alien::libtool](https://metacpan.org/pod/Alien::libtool).  Each helper will execute the corresponding
+command.  You will want to sue the helpers instead of using the command names directly
+because they will use the correct incantation on Windows.  The following list is a
+subset of all of the helpers provided by this alien that are probably the most useful.
+
+- m4
+- autoreconf
+- automake
+- libtool
+- libtoolize
 
 # SEE ALSO
 

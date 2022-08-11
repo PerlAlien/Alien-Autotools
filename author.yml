@@ -10,6 +10,7 @@ pod_spelling_system:
     - libtool
     - alienized
     - libtoolize
+    - autoreconf
 
 pod_coverage:
   skip: 0
@@ -19,4 +20,5 @@ pod_coverage:
     - Alien::Autotools#cflags
     - Alien::Autotools#libs
     - Alien::Autotools#dynamic_libs
+    - Alien::Autotools#alien_helper
 

@@ -32,7 +32,20 @@ From L<alienfile>:
  use alienfile;
  
  share {
+   # Alien::Autotools will pull in:
+   #  - Alien::autoconf
+   #  - Alien::automake
+   #  - Alien::m4
+   #  - Alien::libtool
+   # all of which you will likely need.
    requires 'Alien::Autotools';
+   plugin 'Build::Autoconf';
+   build [
+     '%{autoreconf} -vfi',
+     '%{configure}',
+     '%{make}',
+     '%{make} install',
+   ];
  };
 
 =head1 DESCRIPTION
@@ -41,6 +54,10 @@ This L<Alien> provides the minimum tools requires for building C<autoconf> based
 which do not come bundled with a working C<configure> script.  It currently delegates
 most of its responsibilities to L<Alien::autoconf>, L<Alien::automake>, L<Alien::libtool>,
 and L<Alien::m4>.
+
+The most common use case from an L<alienfile> is shown above where C<autoreconf> is called
+from this L<Alien>, which allows the L<Alien::Build::Plugin::Build::Autoconf> to then
+configure and build the alienized package.
 
 =head1 METHODS
 
@@ -67,6 +84,21 @@ sub _dir_from_exe
   my $path = File::Which::which($name);
   die "unable to find $name in PATH" unless $path;
   Path::Tiny->new($path)->parent->stringify;
+}
+
+my %helper;
+
+sub alien_helper
+{
+  return \%helper if keys %helper;
+
+  foreach my $alien ( map { "Alien::$_" } qw( autoconf automake libtool m4 ))
+  {
+    my %sub = %{ $alien->alien_helper };
+    %helper = (%helper, %sub);
+  }
+
+  return \%helper;
 }
 
 =head2 aclocal_dir
@@ -179,6 +211,27 @@ If you are a system vendor, then you should typically not need to package this m
 check to see if the dependency that requires it can be built as a system install
 instead.
 
+=head1 HELPERS
+
+This L<Alien> provides all of the helpers provides by L<Alien::m4>, L<Alien::autoconf>,
+L<Alien::automake> and L<Alien::libtool>.  Each helper will execute the corresponding
+command.  You will want to sue the helpers instead of using the command names directly
+because they will use the correct incantation on Windows.  The following list is a
+subset of all of the helpers provided by this alien that are probably the most useful.
+
+=over 4
+
+=item m4
+
+=item autoreconf
+
+=item automake
+
+=item libtool
+
+=item libtoolize
+
+=back
 
 =head1 SEE ALSO
 
