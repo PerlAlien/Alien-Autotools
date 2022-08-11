@@ -5,10 +5,10 @@ use warnings;
 use base qw( Exporter );
 use File::Which ();
 use Path::Tiny  ();
-use Alien::autoconf;
-use Alien::automake;
-use Alien::libtool;
-use Alien::m4;
+use Alien::autoconf 0.18;
+use Alien::automake 0.18;
+use Alien::libtool  0.15;
+use Alien::m4       0.18;
 
 our @EXPORT_OK = qw(autoconf_dir automake_dir libtool_dir);
 
