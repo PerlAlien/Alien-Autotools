@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+1.07      2022-08-11 17:06:14 -0600
   - Add helpers (delagated from Alien::autoconf, Alien::automake,
     Alien::libtool and Alien::m4) (gh#8)
 
