@@ -26,6 +26,7 @@ my $build = alienfile_ok q{
         type     => 'file',
         filename => 'foo',
         path     => $main::path,
+        protocol => 'file',
       };
     };
 

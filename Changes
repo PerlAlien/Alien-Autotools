@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+  - Updated test suite to work with ALIEN_DOWNLOAD_RULE (gh#9)
 
 1.07      2022-08-11 17:06:14 -0600
   - Add helpers (delagated from Alien::autoconf, Alien::automake,
