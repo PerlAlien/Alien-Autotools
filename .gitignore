@@ -1,3 +1,5 @@
 /Alien-Autotools-*
 /.build
 *.swp
+*.old
+*.orig
